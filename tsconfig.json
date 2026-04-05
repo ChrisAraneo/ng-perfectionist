@@ -2,10 +2,9 @@
   "compilerOptions": {
     "allowUnreachableCode": false,
     "alwaysStrict": true,
-    "baseUrl": "./",
     "declaration": true,
     "esModuleInterop": true,
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     "lib": ["es2020", "dom"],
     "module": "NodeNext",
     "moduleResolution": "nodenext",
