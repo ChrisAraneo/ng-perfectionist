@@ -1,6 +1,6 @@
-import { TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES, type TSESTree } from '@typescript-eslint/utils';
 
 export const isComponentDecorator = (node: TSESTree.Decorator): boolean =>
-  node.expression.type === 'CallExpression' &&
-  node.expression.callee.type === 'Identifier' &&
+  node.expression.type === AST_NODE_TYPES.CallExpression &&
+  node.expression.callee.type === AST_NODE_TYPES.Identifier &&
   node.expression.callee.name === 'Component';
