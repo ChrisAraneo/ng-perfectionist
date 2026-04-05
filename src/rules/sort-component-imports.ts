@@ -2,7 +2,7 @@ import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
 
 const createRule = ESLintUtils.RuleCreator(
   (name) =>
-    `https://github.com/ChrisAraneo/ng-perfectionist/blob/main/docs/rules/${name}.md`,
+    `https://github.com/ChrisAraneo/eslint-plugin-ng-perfectionist/blob/master/docs/rules/${name}.md`,
 );
 
 type MessageIds = 'unsorted';
