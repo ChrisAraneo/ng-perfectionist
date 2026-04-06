@@ -20,15 +20,16 @@ export const sortComponentImports = ESLintUtils.RuleCreator(
 
       chain(node)
         .thru(getImportsArray)
-        .thru(getNonNullElements)
-        .thru((elements) => {
+        .thru((array) => ({
+          elements: getNonNullElements(array),
+          array: array,
+        }))
+        .thru(({ elements, array }) => {
           if (!elements?.length) {
             return;
           }
 
-          const arrayNode = getImportsArray(node);
-
-          if (!arrayNode) {
+          if (!array) {
             return;
           }
 
@@ -36,7 +37,7 @@ export const sortComponentImports = ESLintUtils.RuleCreator(
           const sorted = getSortedTexts(texts);
 
           if (!isEqual(texts, sorted)) {
-            reportUnsorted(context, arrayNode, elements, sorted);
+            reportUnsorted(context, array, elements, sorted);
           }
         })
         .value();
