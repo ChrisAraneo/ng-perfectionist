@@ -14,7 +14,7 @@ ruleTester.run('sort-component-imports', sortComponentImports as any, {
     {
       code: `
           @Component({
-            imports: [Alpha, Beta, Gamma]
+            imports: [Apple, Banana, Cherry]
           })
           class MyComponent {}
         `,
@@ -22,7 +22,7 @@ ruleTester.run('sort-component-imports', sortComponentImports as any, {
     {
       code: `
           @Component({
-            imports: [Alpha]
+            imports: [Apple]
           })
           class MyComponent {}
         `,
@@ -47,7 +47,7 @@ ruleTester.run('sort-component-imports', sortComponentImports as any, {
     {
       code: `
           @Directive({
-            imports: [Gamma, Beta, Alpha]
+            imports: [Cherry, Banana, Apple]
           })
           class MyDirective {}
         `,
@@ -57,14 +57,14 @@ ruleTester.run('sort-component-imports', sortComponentImports as any, {
     {
       code: `
           @Component({
-            imports: [Gamma, Alpha, Beta]
+            imports: [Cherry, Apple, Banana]
           })
           class MyComponent {}
         `,
       errors: [{ messageId: 'unsorted' }],
       output: `
           @Component({
-            imports: [Alpha, Beta, Gamma]
+            imports: [Apple, Banana, Cherry]
           })
           class MyComponent {}
         `,
