@@ -1,12 +1,9 @@
 import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
-import { chain, isEqual } from 'lodash-es';
+import { chain } from 'lodash-es';
 
-import { getElementTexts } from '../utils/get-element-texts.js';
+import { checkAndReportIfUnsorted } from '../utils/check-and-report-if-unsorted.js';
 import { getImportsArray } from '../utils/get-imports-array.js';
-import { getNonNullElements } from '../utils/get-non-null-elements.js';
-import { getSortedTexts } from '../utils/get-sorted-texts.js';
 import { isDirectiveDecorator } from '../utils/is-directive-decorator.js';
-import { reportUnsorted } from '../utils/report-unsorted.js';
 
 export const sortDirectiveImports = ESLintUtils.RuleCreator(
   (name) =>
@@ -33,26 +30,8 @@ export const sortDirectiveImports = ESLintUtils.RuleCreator(
 
       chain(node)
         .thru(getImportsArray)
-        .thru((array) => ({
-          array: array,
-          elements: getNonNullElements(array),
-        }))
-        .thru(({ elements, array }) => {
-          if (!elements?.length) {
-            return;
-          }
-
-          if (!array) {
-            return;
-          }
-
-          const texts = getElementTexts(elements, context.sourceCode);
-          const sorted = getSortedTexts(texts);
-
-          if (!isEqual(texts, sorted)) {
-            reportUnsorted(context, array, elements, sorted);
-          }
-        })
+        .thru((array) => ({ context, array }))
+        .thru(checkAndReportIfUnsorted)
         .value();
     },
   }),
