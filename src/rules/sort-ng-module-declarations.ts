@@ -1,0 +1,40 @@
+import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
+import { chain } from 'lodash-es';
+
+import { checkAndReportIfUnsorted } from '../utils/check-and-report-if-unsorted.js';
+import { getDeclarationsArray } from '../utils/get-declarations-array.js';
+import { isNgModuleDecorator } from '../utils/is-ng-module-decorator.js';
+
+export const sortNgModuleDeclarations = ESLintUtils.RuleCreator(
+  (name) =>
+    `https://github.com/ChrisAraneo/eslint-plugin-ng-perfectionist/blob/master/docs/rules/${name}.md`,
+)<[], 'unsorted'>({
+  name: 'sort-ng-module-declarations',
+  meta: {
+    docs: {
+      description:
+        'Enforce alphabetical sorting of Angular @NgModule declarations array.',
+    },
+    fixable: 'code',
+    messages: {
+      unsorted:
+        'Angular @NgModule declarations should be sorted alphabetically.',
+    },
+    schema: [],
+    type: 'suggestion',
+  },
+  create: (context) => ({
+    Decorator: (node: TSESTree.Decorator) => {
+      if (!isNgModuleDecorator(node)) {
+        return;
+      }
+
+      chain(node)
+        .thru(getDeclarationsArray)
+        .thru((array) => ({ context, array }))
+        .thru(checkAndReportIfUnsorted)
+        .value();
+    },
+  }),
+  defaultOptions: [],
+});
