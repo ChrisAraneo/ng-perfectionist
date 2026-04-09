@@ -10,7 +10,8 @@ import { sortPipeImports } from './rules/sort-pipe-imports.js';
 const rules: Record<string, Rule.RuleModule> = {
   'sort-component-imports': sortComponentImports as unknown as Rule.RuleModule,
   'sort-directive-imports': sortDirectiveImports as unknown as Rule.RuleModule,
-  'sort-ng-module-declarations': sortNgModuleDeclarations as unknown as Rule.RuleModule,
+  'sort-ng-module-declarations':
+    sortNgModuleDeclarations as unknown as Rule.RuleModule,
   'sort-ng-module-exports': sortNgModuleExports as unknown as Rule.RuleModule,
   'sort-ng-module-imports': sortNgModuleImports as unknown as Rule.RuleModule,
   'sort-pipe-imports': sortPipeImports as unknown as Rule.RuleModule,

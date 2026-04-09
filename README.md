@@ -30,13 +30,13 @@ export default [
 
 ## Rules
 
-| Rule                     | Description                                                 |
-| ------------------------ | ----------------------------------------------------------- |
-| `sort-component-imports` | Enforce alphabetical sorting of `@Component` imports array. |
-| `sort-directive-imports` | Enforce alphabetical sorting of `@Directive` imports array. |
+| Rule                          | Description                                                     |
+| ----------------------------- | --------------------------------------------------------------- |
+| `sort-component-imports`      | Enforce alphabetical sorting of `@Component` imports array.     |
+| `sort-directive-imports`      | Enforce alphabetical sorting of `@Directive` imports array.     |
 | `sort-ng-module-declarations` | Enforce alphabetical sorting of `@NgModule` declarations array. |
-| `sort-ng-module-exports` | Enforce alphabetical sorting of `@NgModule` exports array.  |
-| `sort-ng-module-imports` | Enforce alphabetical sorting of `@NgModule` imports array.  |
-| `sort-pipe-imports`      | Enforce alphabetical sorting of `@Pipe` imports array.      |
+| `sort-ng-module-exports`      | Enforce alphabetical sorting of `@NgModule` exports array.      |
+| `sort-ng-module-imports`      | Enforce alphabetical sorting of `@NgModule` imports array.      |
+| `sort-pipe-imports`           | Enforce alphabetical sorting of `@Pipe` imports array.          |
 
 All rules are auto-fixable.

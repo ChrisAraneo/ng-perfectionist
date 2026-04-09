@@ -9,85 +9,82 @@ const ruleTester = new RuleTester({
   },
 });
 
-ruleTester.run(
-  'sort-ng-module-declarations',
-  sortNgModuleDeclarations as any,
-  {
-    valid: [
-      {
-        code: `
+ruleTester.run('sort-ng-module-declarations', sortNgModuleDeclarations as any, {
+  valid: [
+    {
+      code: `
           @NgModule({
             declarations: [Apple, Banana, Cherry]
           })
           class MyModule {}
         `,
-      },
-      {
-        code: `
+    },
+    {
+      code: `
           @NgModule({
             declarations: [Apple]
           })
           class MyModule {}
         `,
-      },
-      {
-        code: `
+    },
+    {
+      code: `
           @NgModule({
             declarations: []
           })
           class MyModule {}
         `,
-      },
-      {
-        code: `
+    },
+    {
+      code: `
           @NgModule({
             imports: [MyModule],
           })
           class MyModule {}
         `,
-      },
-      {
-        code: `
+    },
+    {
+      code: `
           @Component({
             imports: [Cherry, Banana, Apple]
           })
           class MyComponent {}
         `,
-      },
-    ],
-    invalid: [
-      {
-        code: `
+    },
+  ],
+  invalid: [
+    {
+      code: `
           @NgModule({
             declarations: [Cherry, Apple, Banana]
           })
           class MyModule {}
         `,
-        errors: [{ messageId: 'unsorted' }],
-        output: `
+      errors: [{ messageId: 'unsorted' }],
+      output: `
           @NgModule({
             declarations: [Apple, Banana, Cherry]
           })
           class MyModule {}
         `,
-      },
-      {
-        code: `
+    },
+    {
+      code: `
           @NgModule({
             declarations: [B, A]
           })
           class MyModule {}
         `,
-        errors: [{ messageId: 'unsorted' }],
-        output: `
+      errors: [{ messageId: 'unsorted' }],
+      output: `
           @NgModule({
             declarations: [A, B]
           })
           class MyModule {}
         `,
-      },
-      {
-        code: `
+    },
+    {
+      code: `
           @NgModule({
             declarations: [
               ZComponent,
@@ -97,8 +94,8 @@ ruleTester.run(
           })
           class MyModule {}
         `,
-        errors: [{ messageId: 'unsorted' }],
-        output: `
+      errors: [{ messageId: 'unsorted' }],
+      output: `
           @NgModule({
             declarations: [
               AComponent,
@@ -108,7 +105,6 @@ ruleTester.run(
           })
           class MyModule {}
         `,
-      },
-    ],
-  },
-);
+    },
+  ],
+});

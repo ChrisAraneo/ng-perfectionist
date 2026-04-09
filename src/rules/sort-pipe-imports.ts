@@ -1,9 +1,9 @@
 import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
 import { chain } from 'lodash-es';
 
-import { checkAndReportIfUnsorted } from '../utils/check-and-report-if-unsorted.js';
-import { getImportsArray } from '../utils/get-imports-array.js';
-import { isPipeDecorator } from '../utils/is-pipe-decorator.js';
+import { checkAndReportIfUnsorted } from '../reporters/check-and-report-if-unsorted.js';
+import { getImportsArray } from '../array-extractors/get-imports-array.js';
+import { isPipeDecorator } from '../decorator-guards/is-pipe-decorator.js';
 
 export const sortPipeImports = ESLintUtils.RuleCreator(
   (name) =>

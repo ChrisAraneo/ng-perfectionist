@@ -1,9 +1,9 @@
 import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
 import { chain } from 'lodash-es';
 
-import { checkAndReportIfUnsorted } from '../utils/check-and-report-if-unsorted.js';
-import { getExportsArray } from '../utils/get-exports-array.js';
-import { isNgModuleDecorator } from '../utils/is-ng-module-decorator.js';
+import { checkAndReportIfUnsorted } from '../reporters/check-and-report-if-unsorted.js';
+import { getExportsArray } from '../array-extractors/get-exports-array.js';
+import { isNgModuleDecorator } from '../decorator-guards/is-ng-module-decorator.js';
 
 export const sortNgModuleExports = ESLintUtils.RuleCreator(
   (name) =>

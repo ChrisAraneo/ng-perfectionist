@@ -2,9 +2,9 @@ import { chain, isEqual, noop } from 'lodash-es';
 import { type TSESTree } from '@typescript-eslint/utils';
 import type { RuleContext } from '@typescript-eslint/utils/ts-eslint';
 
-import { getElementTexts } from './get-element-texts.js';
-import { getNonNullElements } from './get-non-null-elements.js';
-import { getSortedTexts } from './get-sorted-texts.js';
+import { getElementTexts } from '../transforms/get-element-texts.js';
+import { getNonNullElements } from '../transforms/get-non-null-elements.js';
+import { getSortedTexts } from '../transforms/get-sorted-texts.js';
 import { reportUnsorted } from './report-unsorted.js';
 import { match } from 'ts-pattern';
 

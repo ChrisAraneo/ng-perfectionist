@@ -1,9 +1,9 @@
 import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
 import { chain } from 'lodash-es';
 
-import { checkAndReportIfUnsorted } from '../utils/check-and-report-if-unsorted.js';
-import { getImportsArray } from '../utils/get-imports-array.js';
-import { isDirectiveDecorator } from '../utils/is-directive-decorator.js';
+import { checkAndReportIfUnsorted } from '../reporters/check-and-report-if-unsorted.js';
+import { getImportsArray } from '../array-extractors/get-imports-array.js';
+import { isDirectiveDecorator } from '../decorator-guards/is-directive-decorator.js';
 
 export const sortDirectiveImports = ESLintUtils.RuleCreator(
   (name) =>

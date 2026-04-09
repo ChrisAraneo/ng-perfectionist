@@ -2,8 +2,8 @@ import { AST_NODE_TYPES, type TSESTree } from '@typescript-eslint/utils';
 import { chain } from 'lodash-es';
 import { match } from 'ts-pattern';
 
-import { findImportsProperty } from '../utils/find-imports-property.js';
-import { getDecoratorFirstArg } from '../utils/get-decorator-first-arg.js';
+import { findImportsProperty } from './property-finders/find-imports-property.js';
+import { getDecoratorFirstArg } from '../transforms/get-decorator-first-arg.js';
 
 export const getImportsArray = (
   node: TSESTree.Decorator | undefined,
