@@ -1,10 +1,10 @@
 import { AST_NODE_TYPES, type TSESTree } from '@typescript-eslint/utils';
+import { noop } from 'lodash-es';
 import { match } from 'ts-pattern';
-import { noop } from '../../utils/noop.js';
 
 export const toArrayExpression = (
   property: TSESTree.Property | undefined,
-): TSESTree.ArrayExpression | undefined =>
+): TSESTree.ArrayExpression | void =>
   match(property?.value)
     .with(
       { type: AST_NODE_TYPES.ArrayExpression },

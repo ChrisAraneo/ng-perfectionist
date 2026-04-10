@@ -7,7 +7,7 @@ import { findDeclarationsProperty } from './finders/find-declarations-property.j
 
 export const getDeclarationsArray = (
   node: TSESTree.Decorator | undefined,
-): TSESTree.ArrayExpression | undefined =>
+): TSESTree.ArrayExpression | void =>
   chain(node)
     .thru(getDecoratorFirstArg)
     .thru(findDeclarationsProperty)

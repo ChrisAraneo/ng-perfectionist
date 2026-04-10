@@ -1,12 +1,11 @@
-import { chain, isEqual, noop } from 'lodash-es';
+import { noop } from 'lodash-es';
 import { type TSESTree } from '@typescript-eslint/utils';
 import type { RuleContext } from '@typescript-eslint/utils/ts-eslint';
 
-import { getElementTexts } from '../transforms/get-element-texts.js';
 import { getNonNullElements } from '../transforms/get-non-null-elements.js';
-import { getSortedTexts } from '../transforms/get-sorted-texts.js';
 import { reportUnsorted } from './report-unsorted.js';
 import { match } from 'ts-pattern';
+import { getElementTextsAndSortedTexts } from '../transforms/get-element-texts-and-sorted-texts.js';
 
 type Input = {
   array: TSESTree.ArrayExpression | undefined;
@@ -20,22 +19,10 @@ export const checkAndReportIfUnsorted = ({ array, context }: Input): void =>
       match(getNonNullElements(array))
         .with(undefined, noop)
         .otherwise((elements) =>
-          chain({
-            texts: getElementTexts(elements, context.sourceCode),
-            sorted: getSortedTexts(
-              getElementTexts(elements, context.sourceCode),
+          match(getElementTextsAndSortedTexts(context, elements))
+            .with({ isEqual: true }, noop)
+            .otherwise(({ sorted }) =>
+              reportUnsorted(context, array, elements, sorted),
             ),
-          })
-            .thru(({ texts, sorted }) => ({
-              texts,
-              sorted,
-              isEqual: isEqual(texts, sorted),
-            }))
-            .thru(
-              ({ sorted, isEqual }) =>
-                !isEqual && reportUnsorted(context, array, elements, sorted),
-            )
-            .thru(noop)
-            .value(),
         ),
     );
