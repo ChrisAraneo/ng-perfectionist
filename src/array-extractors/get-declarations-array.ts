@@ -1,9 +1,9 @@
-import { AST_NODE_TYPES, type TSESTree } from '@typescript-eslint/utils';
+import { type TSESTree } from '@typescript-eslint/utils';
 import { chain } from 'lodash-es';
-import { match } from 'ts-pattern';
 
-import { findDeclarationsProperty } from './property-finders/find-declarations-property.js';
 import { getDecoratorFirstArg } from '../transforms/get-decorator-first-arg.js';
+import { toArrayExpression } from './transforms/to-array-expression.js';
+import { findDeclarationsProperty } from './finders/find-declarations-property.js';
 
 export const getDeclarationsArray = (
   node: TSESTree.Decorator | undefined,
@@ -11,12 +11,5 @@ export const getDeclarationsArray = (
   chain(node)
     .thru(getDecoratorFirstArg)
     .thru(findDeclarationsProperty)
-    .thru((property) =>
-      match(property?.value)
-        .with(
-          { type: AST_NODE_TYPES.ArrayExpression },
-          (value) => value as TSESTree.ArrayExpression,
-        )
-        .otherwise(() => undefined),
-    )
+    .thru(toArrayExpression)
     .value();
