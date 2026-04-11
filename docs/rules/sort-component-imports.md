@@ -192,10 +192,6 @@ class MyComponent {}
 
 <br>
 
----
-
-<br>
-
 </details>
 
 <br>
