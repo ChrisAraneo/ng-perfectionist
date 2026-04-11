@@ -3,23 +3,23 @@ import { chain } from 'lodash-es';
 
 import { checkIfUnsorted } from '../checks/check-if-unsorted.js';
 import { reportUnsorted } from '../reports/report-unsorted.js';
-import { getImportsArray } from '../extracts/get-imports-array.js';
-import { filterPipeDecorator } from '../filters/filter-pipe-decorator.js';
+import { getStyleUrlsArray } from '../extracts/get-style-urls-array.js';
+import { filterComponentDecorator } from '../filters/filter-component-decorator.js';
 import { withContext } from '../transforms/with-context.js';
 
-export const sortPipeImports = ESLintUtils.RuleCreator(
+export const sortComponentStyleUrls = ESLintUtils.RuleCreator(
   (name) =>
     `https://github.com/ChrisAraneo/eslint-plugin-ng-perfectionist/blob/master/docs/rules/${name}.md`,
 )<[], 'unsorted'>({
-  name: 'sort-pipe-imports',
+  name: 'sort-component-style-urls',
   meta: {
     docs: {
       description:
-        'Enforce alphabetical sorting of Angular @Pipe imports array.',
+        'Enforce alphabetical sorting of Angular @Component styleUrls array.',
     },
     fixable: 'code',
     messages: {
-      unsorted: 'Angular @Pipe imports should be sorted alphabetically.',
+      unsorted: 'Angular @Component styleUrls should be sorted alphabetically.',
     },
     schema: [],
     type: 'suggestion',
@@ -27,8 +27,8 @@ export const sortPipeImports = ESLintUtils.RuleCreator(
   create: (context) => ({
     Decorator: (node: TSESTree.Decorator) =>
       chain(node)
-        .thru(filterPipeDecorator)
-        .thru(getImportsArray)
+        .thru(filterComponentDecorator)
+        .thru(getStyleUrlsArray)
         .thru(withContext(context))
         .thru(checkIfUnsorted)
         .thru(

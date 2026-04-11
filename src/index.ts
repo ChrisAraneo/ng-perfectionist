@@ -1,20 +1,21 @@
 import type { ESLint, Rule } from 'eslint';
 
 import { sortComponentImports } from './rules/sort-component-imports.js';
+import { sortComponentStyleUrls } from './rules/sort-component-style-urls.js';
 import { sortDirectiveImports } from './rules/sort-directive-imports.js';
 import { sortNgModuleDeclarations } from './rules/sort-ng-module-declarations.js';
 import { sortNgModuleExports } from './rules/sort-ng-module-exports.js';
 import { sortNgModuleImports } from './rules/sort-ng-module-imports.js';
-import { sortPipeImports } from './rules/sort-pipe-imports.js';
 
 const rules: Record<string, Rule.RuleModule> = {
   'sort-component-imports': sortComponentImports as unknown as Rule.RuleModule,
+  'sort-component-style-urls':
+    sortComponentStyleUrls as unknown as Rule.RuleModule,
   'sort-directive-imports': sortDirectiveImports as unknown as Rule.RuleModule,
   'sort-ng-module-declarations':
     sortNgModuleDeclarations as unknown as Rule.RuleModule,
   'sort-ng-module-exports': sortNgModuleExports as unknown as Rule.RuleModule,
   'sort-ng-module-imports': sortNgModuleImports as unknown as Rule.RuleModule,
-  'sort-pipe-imports': sortPipeImports as unknown as Rule.RuleModule,
 };
 
 const plugin: ESLint.Plugin = {

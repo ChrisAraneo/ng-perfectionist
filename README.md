@@ -18,11 +18,11 @@ export default [
     },
     rules: {
       '@chris.araneo/ng-perfectionist/sort-component-imports': 'error',
+      '@chris.araneo/ng-perfectionist/sort-component-style-urls': 'error',
       '@chris.araneo/ng-perfectionist/sort-directive-imports': 'error',
       '@chris.araneo/ng-perfectionist/sort-ng-module-declarations': 'error',
       '@chris.araneo/ng-perfectionist/sort-ng-module-exports': 'error',
       '@chris.araneo/ng-perfectionist/sort-ng-module-imports': 'error',
-      '@chris.araneo/ng-perfectionist/sort-pipe-imports': 'error',
     },
   },
 ];
@@ -33,10 +33,10 @@ export default [
 | Rule                          | Description                                                     |
 | ----------------------------- | --------------------------------------------------------------- |
 | `sort-component-imports`      | Enforce alphabetical sorting of `@Component` imports array.     |
+| `sort-component-style-urls`   | Enforce alphabetical sorting of `@Component` styleUrls array.   |
 | `sort-directive-imports`      | Enforce alphabetical sorting of `@Directive` imports array.     |
 | `sort-ng-module-declarations` | Enforce alphabetical sorting of `@NgModule` declarations array. |
 | `sort-ng-module-exports`      | Enforce alphabetical sorting of `@NgModule` exports array.      |
 | `sort-ng-module-imports`      | Enforce alphabetical sorting of `@NgModule` imports array.      |
-| `sort-pipe-imports`           | Enforce alphabetical sorting of `@Pipe` imports array.          |
 
 All rules are auto-fixable.
