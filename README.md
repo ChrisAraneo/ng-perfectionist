@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm install --save-dev @chris.araneo/eslint-plugin-ng-perfectionist
+npm install --save-dev "@chris.araneo/eslint-plugin-ng-perfectionist"
 ```
 
 ## Usage
