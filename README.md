@@ -10,12 +10,14 @@ npm install --save-dev "@chris.araneo/eslint-plugin-ng-perfectionist"
 
 ```js
 import ngPerfectionist from '@chris.araneo/eslint-plugin-ng-perfectionist';
+import angular from 'angular-eslint';
 
 export default [
   {
     plugins: {
       '@chris.araneo/ng-perfectionist': ngPerfectionist,
     },
+    processor: angular.processInlineTemplates,
     rules: {
       '@chris.araneo/ng-perfectionist/sort-component-imports': 'error',
       '@chris.araneo/ng-perfectionist/sort-component-style-urls': 'error',
